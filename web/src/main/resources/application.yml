@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: '@profileActive@'
+  application:
+    name: '@name@'
+  freemarker:
+    allow-request-override: false #设置是否允许HttpServletRequest属性覆盖(隐藏)控制器生成的同名模型属性
+    allow-session-override: false #设置是否允许HttpSession属性覆盖(隐藏)控制器生成的同名模型属性。
+    cache: false #启用模板缓存
+    charset: UTF-8 #设置编码格式
+    check-template-location: true #检查模板位置是否存在
+    content-type: text/html #内容类型值
+    enabled: true #为这种技术启用MVC视图解决方案。
+    expose-request-attributes: false #设置是否应该在与模板合并之前将所有请求属性添加到模型中
+    expose-session-attributes: false #设置是否在与模板合并之前将所有HttpSession属性添加到模型中
+    expose-spring-macro-helpers: true #设置是否公开RequestContext供Spring宏库使用，名称为“SpringMacroRequestContext”。
+    prefer-file-system-access: true #更新文件系统访问模板加载。文件系统访问允许对模板更改进行热检测。
+    suffix: .html #后缀
+    template-loader-path: ${spring.static.template-page-path} #以逗号分隔的模板路径列表
+    settings:
+      template_update_delay: 0
+      default_encoding: UTF-8
+      classic_compatible: true
+    request-context-attribute: request #所有视图的RequestContext属性的名称
+  servlet:
+    multipart:
+      max-file-size: 10240MB
+      max-request-size: 10240MB
+logging:
+  file:
+    path: ./web/log
+#server:
+#  servlet:
+#    context-path: /nd

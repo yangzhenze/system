@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.swsk</groupId>
+        <artifactId>system</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <groupId>com.swsk</groupId>
+    <artifactId>scada</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>scada</name>
+    <description>数据采集模块</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.swsk</groupId>
+            <artifactId>data</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--解决@xx@无法解析的问题-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.swsk.dbq.DbqApplication</mainClass>
+                    <layout>JAR</layout>
+                    <!--构建完整可执行程序，可以直接运行-->
+                    <!--<executable>true</executable>-->
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

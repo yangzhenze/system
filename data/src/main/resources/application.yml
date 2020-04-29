@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    include: [data-dev]
+logging:
+  file:
+    path: ./data/log

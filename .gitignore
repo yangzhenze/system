@@ -1,0 +1,3 @@
+# Project exclude paths
+/data/target/
+/web/target/

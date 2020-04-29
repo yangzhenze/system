@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    include: [data-dev]
+  static: #静态文件资源
+    template-page-path: classpath:/templates/page/ #加载模版路径
+    resources:
+        #访问静态资源规则，可配置多个以','或'，'隔离
+      - pathPatterns: /static/**
+        #静态资源文件位置，可配置多个以','或'，'隔离
+        resourceLocations: classpath:/templates/static/,file:${case.outPath}
+server:
+  port: 8015
+case:
+  importPath: D:/chengyi/Documents/通风廊道/测试/ #个列导入数据路径
+  exePath: F:/tts9/wrf/WRFDATA/ #执行程序路径
+  exeName: WRFDATA.exe #执行程序名称
+  dataPath: D:/chengyi/Documents/通风廊道/testWrf/ #wrf数据文件所在文件夹
+  outPath: /Users/yangzhenze/Documents/通风廊道/测试id/ #输出图片文件夹【相对路径，不存在自动创建】
+  shpPath: F:/tts9/wrf/fujian_map/ #地图文件路径=======
+

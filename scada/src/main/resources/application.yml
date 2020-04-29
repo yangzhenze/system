@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: '@profileActive@'
+logging:
+  file:
+    path: ./scada/log

@@ -1,0 +1,216 @@
+package com.swsk.web.util;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author zzy
+ * @Date 2020-02-26 10:38
+ */
+public class ExcelUtil {
+
+
+    /**
+     * 获取默认的表头样式
+     * @param wb
+     * @return
+     */
+    public static CellStyle getDefaultHeadStyle(Workbook wb){
+        //设置头部单元格样式
+        CellStyle headStyle = wb.createCellStyle();
+        headStyle.setBorderBottom(BorderStyle.THICK);  //设置单元格线条
+        headStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());   //设置单元格颜色
+        headStyle.setBorderLeft(BorderStyle.THICK);
+        headStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        headStyle.setBorderRight(BorderStyle.THICK);
+        headStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        headStyle.setBorderTop(BorderStyle.THICK);
+        headStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
+        headStyle.setAlignment(HorizontalAlignment.CENTER);    //设置水平对齐方式
+        headStyle.setVerticalAlignment(VerticalAlignment.CENTER);  //设置垂直对齐方式
+        headStyle.setShrinkToFit(true);  //自动伸缩
+        headStyle.setFont(getDefaultFont(wb));  //设置字体
+        return headStyle;
+    }
+
+
+    /**
+     * 获取默认的字体样式
+     * @param wb
+     * @return
+     */
+    public static Font getDefaultFont(Workbook wb){
+        //设置字体
+        Font font = wb.createFont();
+        font.setFontHeightInPoints((short)14);
+        font.setFontName("宋体");
+        font.setItalic(false);
+        font.setStrikeout(false);
+        return font;
+    }
+
+    /**
+     * 获取默认的单元格样式
+     * @param wb
+     * @return
+     */
+    public static CellStyle getDefaultDataStyle(Workbook wb){
+        /*设置数据单元格格式*/
+        CellStyle dataStyle = wb.createCellStyle();
+        dataStyle.setBorderBottom(BorderStyle.THIN);  //设置单元格线条
+        dataStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());   //设置单元格颜色
+        dataStyle.setBorderLeft(BorderStyle.THIN);
+        dataStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        dataStyle.setBorderRight(BorderStyle.THIN);
+        dataStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        dataStyle.setBorderTop(BorderStyle.THIN);
+        dataStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
+        dataStyle.setAlignment(HorizontalAlignment.LEFT);    //设置水平对齐方式
+        dataStyle.setVerticalAlignment(VerticalAlignment.CENTER);  //设置垂直对齐方式
+        dataStyle.setShrinkToFit(true);  //自动伸缩
+        return dataStyle;
+    }
+
+    /**
+     * 添加行数据
+     * @param sheet
+     * @param cellStyle
+     * @param rowIndex
+     * @param datas
+     * @return
+     */
+    public static Row addRowData(Sheet sheet,CellStyle cellStyle,int rowIndex,String... datas){
+        Row row = sheet.createRow(rowIndex);
+        for (int i = 0; i < datas.length; i++) {
+            Cell cityCell = row.createCell(i);
+
+            if(null != cityCell){
+                cityCell.setCellStyle(cellStyle);
+            }
+
+            cityCell.setCellValue(datas[i]);
+        }
+        return row;
+    }
+
+    /**
+     * 添加行数据
+     * @param sheet
+     * @param cellStyle
+     * @param rowIndex
+     * @param datas
+     * @return
+     */
+    public static Row addRowData(Sheet sheet,CellStyle cellStyle,int rowIndex,List<Object> datas){
+        Row row = sheet.createRow(rowIndex);
+        for (int i = 0; i < datas.size(); i++) {
+            Cell cityCell = row.createCell(i);
+
+            if(null != cityCell){
+                cityCell.setCellStyle(cellStyle);
+            }
+
+            if(datas.get(i) instanceof String){
+                cityCell.setCellValue(datas.get(i).toString());
+            }
+
+            if(datas.get(i) instanceof Date){
+                cityCell.setCellValue((Date)datas.get(i));
+            }
+            if(datas.get(i) instanceof Boolean){
+                cityCell.setCellValue((boolean)datas.get(i));
+            }
+            if(datas.get(i) instanceof String){
+                cityCell.setCellValue((String)datas.get(i));
+            }
+
+            if(datas.get(i) instanceof Number){
+                cityCell.setCellValue(((Number) datas.get(i)).doubleValue());
+            }
+
+
+        }
+        return row;
+    }
+
+    /**
+     * 添加行数据
+     * @param sheet
+     * @param cellStyle
+     * @param rowIndex
+     * @param datas
+     * @return
+     */
+    public static Row addRowData(Sheet sheet,CellStyle cellStyle,int rowIndex,Object... datas){
+        Row row = sheet.createRow(rowIndex);
+        for (int i = 0; i < datas.length; i++) {
+            Cell cityCell = row.createCell(i);
+
+            if(null != cityCell){
+                cityCell.setCellStyle(cellStyle);
+            }
+
+
+
+            if(null == datas[i]){
+                cityCell.setCellValue("");
+            }
+
+            if(datas[i] instanceof String){
+                cityCell.setCellValue(datas[i].toString());
+            }
+
+            if(datas[i] instanceof Date){
+                cityCell.setCellValue((Date)datas[i]);
+            }
+            if(datas[i] instanceof Boolean){
+                cityCell.setCellValue((boolean)datas[i]);
+            }
+            if(datas[i] instanceof String){
+                cityCell.setCellValue((String)datas[i]);
+            }
+
+            if(datas[i] instanceof Number){
+                cityCell.setCellValue(((Number) datas[i]).doubleValue());
+            }
+
+
+        }
+        return row;
+    }
+
+
+
+    /**
+     * 合并单元格
+     * @param sheet
+     * @param mergeRows
+     * @param firstCol
+     * @param lastCol
+     */
+    public static void mergeRow(Sheet sheet, List<Integer[]> mergeRows,int firstCol,int lastCol){
+
+        for (Integer[] mergeRow : mergeRows) {
+            if(mergeRow == null){
+                continue;
+            }
+
+            if(mergeRow[0] == null || mergeRow[1] == null){
+                continue;
+            }
+
+            if(mergeRow[0].equals(mergeRow[1])){
+                continue;
+            }
+            CellRangeAddress cityRegion = new CellRangeAddress(mergeRow[0], mergeRow[1], firstCol, lastCol);
+            sheet.addMergedRegion(cityRegion);
+        }
+
+
+
+
+    }
+}

@@ -2,8 +2,7 @@ package com.swsk.data;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.swsk.data.config.SpringUtils;
-import com.swsk.data.util.generate.db.JdbcHolder;
-import com.swsk.data.util.generate.db.JdbcTemplateHelper;
+import com.zzy.db.helper.JdbcTemplateHelper;
 
 import javax.sql.DataSource;
 

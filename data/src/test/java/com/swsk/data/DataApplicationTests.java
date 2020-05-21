@@ -1,8 +1,9 @@
 package com.swsk.data;
 import com.swsk.data.config.SpringUtils;
+import com.swsk.data.user.dao.IUserDao;
 import com.swsk.data.user.entity.User;
 import com.swsk.data.user.service.IUserService;
-import com.swsk.data.util.generate.db.JdbcTemplateHelper;
+import com.zzy.db.helper.JdbcTemplateHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,27 @@ public class DataApplicationTests {
 
     @Autowired
     IUserService userService;
+    @Autowired
+    IUserDao userDao;
 
 
     @Test
     public void contextLoads() {
+        /*User user = new User();
+        user.setAccount("admin");
+        user.setProvinceCode("001");
+        List<User> users = userDao.findList(user);
+
+        users.forEach( x->{
+            System.out.println(x.toString());
+        });*/
+
+        String [] dataName = SpringUtils.applicationContext.getBeanNamesForType(DataSource.class);
+        for (String s : dataName) {
+            System.out.println(s);
+        }
+
+
     }
 
     @Test
@@ -129,6 +147,9 @@ public class DataApplicationTests {
         JdbcTemplateHelper.jdbcTemplate.update("INSERT INTO `fxjc`.`user`(`account`, `password`) VALUES ('admin', 'e10adc3949ba59abbe56e057f20f883e');",keyHolder);
         System.out.println(keyHolder.getKey().longValue());*/
 
+    }
+
+    public static void main(String[] args) {
     }
 
 

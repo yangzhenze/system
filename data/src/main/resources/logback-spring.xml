@@ -17,9 +17,7 @@
         %n:输出一个换行符号
     -->
     <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
-    <property name="pattern" value="%black(控制台-) %red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %blue([%class:%line]) %highlight(%-5level) - %cyan(%msg%n)"/>
-
-    <!--<pattern name="pattern" value="%black(控制台-) %red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}) - %cyan(%msg%n)"></pattern>-->
+    <property name="pattern" value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%highlight(%-5level) %green([%thread]) %blue([%class:%line]) - %cyan(%msg%n)"/>
 
 
     <!-- 控制台 appender -->
@@ -97,7 +95,7 @@
     <appender name="FILE_HTML" class="ch.qos.logback.core.FileAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="ch.qos.logback.classic.html.HTMLLayout">
-                <pattern>%d{yyyyMMdd:HH:mm:ss.SSS}%thread%-5level%F{32}%M%L%msg</pattern>
+                <pattern>${pattern}</pattern>
             </layout>
         </encoder>
         <File>${logdir}/log.html</File>
@@ -109,17 +107,8 @@
     <!-- 测试环境+开发环境，日志级别为INFO且不写日志文件 -->
     <springProfile name="dev">
         <!-- 开启包下debug输出 -->
+        <!--<logger name="com.zzy" level="DEBUG"/>-->
         <logger name="com.swsk" level="DEBUG"/>
-       <!-- <logger name="com.swsk" additivity="false">
-            <appender-ref ref="STDOUT"/>
-        </logger>-->
-
-        <logger name="com.swsk" additivity="false">
-            <appender-ref ref="STDOUT"/>
-            <appender-ref ref="FILE_ERROR" />
-            <appender-ref ref="FILE_DEBUG"/>
-            <appender-ref ref="FILE_INFO" />
-        </logger>
 
 
         <root level="INFO">
@@ -128,12 +117,12 @@
             <appender-ref ref="FILE_INFO" />
         </root>
 
-        <!--<root level="WARN">
-            <appender-ref ref="STDOUT"/>
-            <appender-ref ref="FILE_ERROR" />
-            <appender-ref ref="FILE_INFO" />
-            <appender-ref ref="FILE_HTML" />
-        </root>-->
+<!--        <root level="WARN">-->
+<!--            <appender-ref ref="STDOUT"/>-->
+<!--            <appender-ref ref="FILE_ERROR" />-->
+<!--            <appender-ref ref="FILE_INFO" />-->
+<!--            <appender-ref ref="FILE_HTML" />-->
+<!--        </root>-->
     </springProfile>
 
     <!-- 生产环境. 日志级别为WARN且写日志文件-->

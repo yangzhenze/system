@@ -1,27 +1,33 @@
 package com.swsk.web;
 
 import com.swsk.data.user.entity.User;
-import com.swsk.data.util.generate.util.JdbcTemplateHelper;
+import com.zzy.db.helper.JdbcTemplateHelper;
 import org.springframework.stereotype.Component;
 
 /**
  * @author zzy
  * @Date 2020-03-25 19:22
  */
-@Component
 public class ThreadTest implements Runnable{
+
+
+    int s = 0;
+
+    public ThreadTest(int s){
+        this.s = s;
+    }
 
     @Override
     public void run() {
         User user = new User();
-        user.setAccount(1+"");
-        user.setName("test"+1);
-        System.out.println(java.lang.Thread.currentThread().getName()+":"+1);
+        user.setAccount(java.lang.Thread.currentThread().getName());
+        user.setName(java.lang.Thread.currentThread().getName());
+        System.out.println(java.lang.Thread.currentThread().getName());
         try{
             System.out.println(java.lang.Thread.currentThread().getName()+":"+ JdbcTemplateHelper.insertAndGetEntity(user).toString());
         }catch (Exception e){
             System.out.println(e);
-            e.getStackTrace();
+            e.printStackTrace();
         }
     }
 }

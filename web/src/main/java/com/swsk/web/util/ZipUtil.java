@@ -1,7 +1,9 @@
 package com.swsk.web.util;
 
+import com.swsk.web.WebApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.WebApplicationType;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -33,6 +35,8 @@ public class ZipUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+        WebApplicationType webApplicationType = WebApplicationType.SERVLET;
+        System.out.println();
 
         BigDecimal b = new BigDecimal(2);
         System.out.println(b instanceof Number);

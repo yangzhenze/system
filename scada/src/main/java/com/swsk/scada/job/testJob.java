@@ -1,7 +1,7 @@
 package com.swsk.scada.job;
 
 import com.swsk.data.user.entity.User;
-import com.swsk.data.util.generate.util.JdbcTemplateHelper;
+import com.zzy.db.helper.JdbcTemplateHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

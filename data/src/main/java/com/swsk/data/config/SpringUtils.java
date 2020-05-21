@@ -23,6 +23,4 @@ public class SpringUtils implements ApplicationContextAware {
 
     }
 
-
-
 }

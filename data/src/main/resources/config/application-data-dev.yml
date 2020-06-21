@@ -4,7 +4,7 @@ spring:
       #      url: jdbc:mysql://10.211.55.4:3306/ndtq?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true #
       #      username: yangzhenze
       #      password: yangzhenze6712
-      url: jdbc:mysql://3dspace.xicp.net:52266/fxjc?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://3dspace.xicp.net:52266/fxjc?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
       # url: jdbc:mysql://192.168.1.226:3306/fxjc?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: swsk123456

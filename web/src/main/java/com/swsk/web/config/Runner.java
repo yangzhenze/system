@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @Date 2019-07-18 15:10
  */
 @Slf4j
-@Component
+// @Component
 public class Runner implements ApplicationRunner {
 
     @Value("${server.port}")

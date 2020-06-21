@@ -1,7 +1,9 @@
 package com.swsk.data;
 import com.swsk.data.config.SpringUtils;
 import com.swsk.data.user.dao.IUserDao;
+import com.swsk.data.user.dao.UserRepository;
 import com.swsk.data.user.entity.User;
+import com.swsk.data.user.entity.User2;
 import com.swsk.data.user.service.IUserService;
 import com.zzy.db.helper.JdbcTemplateHelper;
 import org.junit.Test;
@@ -22,9 +24,13 @@ public class DataApplicationTests {
     @Autowired
     IUserDao userDao;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     @Test
     public void contextLoads() {
+        List<User2> users = userRepository.findAllBy();
         /*User user = new User();
         user.setAccount("admin");
         user.setProvinceCode("001");

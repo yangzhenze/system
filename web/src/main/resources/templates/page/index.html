@@ -5,6 +5,49 @@
     <title>Title</title>
 </head>
 <body>
-Index
+    <div id="paypal-button-container"></div>
 </body>
+<script src="https://www.paypal.com/sdk/js?client-id=ATNuULnRo3dQONIyLtt9hirbIIgGYQnzcXOMrGlYQUKL3E_2uQ0JbvaetBOvKWpDqPZqB-ISi2ZIWWKQ"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>
+<script>
+
+
+
+    createOrders = function() {
+        fetch('/pay', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response =>
+            response.text()
+        ).then(data => {
+            console.log(data);
+            return data;
+        }).catch(function(e){
+            console.log("error:" + e);
+        })
+    }
+
+    async function getOrder() {
+        const res = await fetch('/pay', {method: 'post', headers: {'content-type': 'application/json'}});
+        const result = await res.json();
+        return result
+    }
+
+
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return getOrder()
+        },
+        onApprove: function(data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function(details) {
+                // This function shows a transaction success message to your buyer.
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        }
+    }).render('#paypal-button-container');
+
+</script>
 </html>

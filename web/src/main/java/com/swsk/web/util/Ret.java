@@ -260,7 +260,7 @@ public class Ret {
 	}*/
 
 	//返回json
-	private static String getJson(Object object){
+	public static String getJson(Object object){
 		ObjectMapper mapper = new ObjectMapper();
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         mapper.setDateFormat(fmt);

@@ -77,8 +77,8 @@ public class RenderController {
         return createdOrder;
     }
 
-    public void testOrdersCaptureRequest() throws IOException {
-        String orderId = "";
+    @RequestMapping("/order")
+    public void testOrdersCaptureRequest(String orderId) throws IOException {
         OrdersCaptureRequest request = new OrdersCaptureRequest(orderId);
 
         HttpResponse<Order> response = client.execute(request);
@@ -88,16 +88,19 @@ public class RenderController {
     }
 
     // 退款
-    public void testRefundsGetRequest() throws IOException {
-        RefundsGetRequest request = new RefundsGetRequest("ORDER-ID");
+    @RequestMapping("/order/refund")
+    public void testRefundsGetRequest(String orderId) throws IOException {
+        RefundsGetRequest request = new RefundsGetRequest(orderId);
 
         HttpResponse<Refund> response = client.execute(request);
         response.statusCode();
         response.result();
     }
 
-    public void testCapturesRefundRequest() throws IOException {
-        CapturesRefundRequest request = new CapturesRefundRequest("ORDER-ID");
+
+    @RequestMapping("/refund")
+    public void testCapturesRefundRequest(String orderId) throws IOException {
+        CapturesRefundRequest request = new CapturesRefundRequest(orderId);
 
         HttpResponse<Refund> response = client.execute(request);
         response.statusCode();
